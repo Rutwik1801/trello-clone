@@ -1,21 +1,45 @@
 .enclosing-div__2{
-    padding: 10px;
+
+    color:black;
+    padding: 2px 2px 5px 2px;
     margin-bottom: 10px;
-    /* background-color: #888; */
     border-top:1px solid #999 ;
-    /* box-shadow: 0 5px 20px rgba(0,0,0,0.15); */
+
 }
 
 .enclosing-div__1{
-    padding: 10px;
+    padding: 0 0 0 5px;
+    text-align: left;
+
+    transform: translateY(3px);
     color: #777;
 }
 
 .enclosing-div{
+ 
     background-color: white;
     text-align: center;
-    max-width: 300px;
+    width: 300px;
+    max-width: 350px;
     margin: 20px 0;
-    /* padding: 10px 20px; */
+
     box-shadow: 2px 2px rgba(0,0,0,0.15);
+}
+
+.image{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.float-img{
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.para-color{
+    color:#276678;
+    transform: translateY(-8px);
 }
