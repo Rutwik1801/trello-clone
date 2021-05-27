@@ -1,7 +1,7 @@
 .main-div{
     background-color: #eee;
     display: flex;
-    margin-left: 20px;
+    margin:0 30px;
 }
 .main-div__paper{
     padding:10px 20px;

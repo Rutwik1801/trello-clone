@@ -1,0 +1,74 @@
+.add-card-btn{
+    /* font-family: sans-serif;
+    font-size: medium;
+    margin: 5px 0;
+    background-color: green;
+    border: none;
+    padding: 7px 12px;
+    border-radius:2px;
+    color: white; */
+    background-color: #4CAF50; /* Green */
+    border: 2px solid #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* font-size: 16px; */
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.add-card-btn:hover{
+/* opacity: 0.8; */
+background-color: white; 
+color: black; 
+border: 2px solid #4CAF50;
+}
+
+.btn-container{
+    display: flex;
+    padding: 5px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.inputBase{
+    /* width: 100%; */
+    /* margin-bottom: 15px; */
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #777;
+    height: 40px;
+    border-radius: 3px;
+}
+.inputBase::placeholder{
+    margin-left: 2px;
+}
+.margin-fields{
+    margin-bottom: 10px;
+}
+.margin-fields-left{
+    margin-left:10px ;
+}
+
+.btn-remove{
+    background: none;
+    font-size: x-large;
+    color: black ;
+    padding: 5px 7px;
+    border: none;
+    transition: all 0.2s;
+
+}
+.btn-remove:hover{
+    color: #f44336;
+}
+
+.input-container{
+    background-color: white;
+    padding: 10px;
+}
+

@@ -1,6 +1,7 @@
 body{
-  background-color:#777;
+  background-color:#1687a7;
 }
 .App{
   display: flex;
+  margin: 30px;
 }

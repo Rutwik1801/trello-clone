@@ -1,13 +1,13 @@
 import React, { Component }  from 'react';
+import {dataSliceActions} from '../../store/data-slice';
+import {useDispatch,useSelector} from 'react-redux';
 import { InputBase, Typography } from "@material-ui/core"
-import {useState,useContext} from 'react';
-import storeAPI from '../../utils/storeAPI' 
-// import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-// import MoreHorizIcon from '@material-ui/icons'
+import {useState} from 'react';
+
 const Title=({title,listId})=>{
+    const dispatch=useDispatch();
     const [newTitle,setNewTitle]=useState(title);
     const [open,setOpen]=useState(false);
-   const {updateListTitle}=useContext(storeAPI);    
     const changeHandler=(event)=>{
      setNewTitle(event.target.value);
     }
@@ -16,7 +16,10 @@ const Title=({title,listId})=>{
         setOpen(true);
     }
     const blurHandler=()=>{
-        updateListTitle(newTitle,listId);
+        dispatch(dataSliceActions.updateTitle({
+            id:listId,
+            title:newTitle
+        }))
         setOpen(false);
     }
 
@@ -29,7 +32,6 @@ return(
         <div>
         <Typography onClick={clickHandler}>{newTitle}</Typography>
         </div>}
-        {/* <MoreHorizIcon></MoreHorizIcon> */}
     </div>
 );
 }
