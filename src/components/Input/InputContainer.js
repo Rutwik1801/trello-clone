@@ -1,5 +1,5 @@
-import React, { Component }  from 'react';
-import { Typography,Paper, Collapse } from "@material-ui/core"
+import React from 'react';
+import { Typography, Collapse } from "@material-ui/core"
 import InputCard from "./InputCard"
 import {useState} from 'react';
 
@@ -18,9 +18,9 @@ return(
 
 
     <Collapse in={!open}>
-    <Paper>
-            <Typography onClick={clickHandler}>{type!=="list"?"+Add A Card":"Add A List"}</Typography>
-        </Paper>
+    <div>
+            <Typography onClick={clickHandler} >{type!=="list"?"+ Add A Card":"+ Add A List"}</Typography>
+        </div>
     </Collapse>
     </div>
 );

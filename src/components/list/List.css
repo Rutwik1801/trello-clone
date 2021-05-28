@@ -1,8 +1,10 @@
 .main-div{
     background-color: #eee;
     display: flex;
-    margin-left: 20px;
+   justify-content: center;
+    margin:0 30px;
 }
 .main-div__paper{
+    min-width: 300px;
     padding:10px 20px;
 }

@@ -1,46 +1,96 @@
-// import {useContext} from 'react';
-import React, { Component }  from 'react';
-import {Paper, InputBase } from "@material-ui/core"
-import  {useState,useContext} from 'react';
-import StoreAPI from '../../utils/storeAPI';
+import React from 'react';
+import { v4 as uuid } from 'uuid';
+import {useDispatch} from 'react-redux';
+import {dataSliceActions} from '../../store/data-slice';
+import { useState } from 'react';
+import './InputCard.css';
 
+const InputCard = ({ setOpen, listId, type }) => {
 
-const InputCard=({setOpen,listId,type})=>{
-    const [cardTitle,setCardTitle]=useState('');
-    const [cardDesignation,setCardDesignation]=useState('');
-   const {addMoreCard,addMoreList} = useContext(StoreAPI);
+    const dispatch=useDispatch();
 
-    const changeHandler=(event)=>{
-         setCardTitle(event.target.value);
+    const [cardTitle, setCardTitle] = useState('');
+    const [cardDesignation, setCardDesignation] = useState('');
+    const [cardName, setCardName] = useState('');
+     const [cardImage,setCardImage]=useState(null);
+ 
+    const changeHandler = (event) => {
+        setCardTitle(event.target.value);
     }
-    const changeDesiHandler=(event)=>{
+    const changeDesiHandler = (event) => {
         setCardDesignation(event.target.value);
     }
-    const clickHandler=()=>{
-        if(type!=="list"){
+    const changeNameHandler = (event) => {
+        setCardName(event.target.value);
+    }
+    const changeImageHandler=(event)=>{
+         setCardImage(event.target.value);
+    }
+    const clickHandler = () => {
+        if (type !== "list") {
             setOpen(false);
-            addMoreCard(cardTitle,listId,cardDesignation);
+            dispatch(dataSliceActions.addMoreCard({
+                id:uuid(),
+                title:cardTitle,
+                designation:cardDesignation,
+                name:cardName,
+                listId:listId,
+                image:cardImage
+            }))
             setCardTitle('');
-        } else{
-            addMoreList(cardTitle);
+            setCardName('');
+            setCardDesignation('');
+            setCardImage(null);
+        }
+         else {
+            dispatch(dataSliceActions.addMoreList({
+               id:uuid(),
+                title:cardTitle,
+                cards:[]
+            }))
             setOpen(false);
             setCardTitle('');
         }
     }
-return(
-<div>
-    <Paper>
-        <InputBase value={cardTitle} multiline fullWidth placeholder={type!=='list'?"Enter your details":"Enter List Title"} onBlur={()=>{setOpen(false)}} onChange={changeHandler} />
-    </Paper>
-    {type!=="list" && <InputBase placeholder="designation" value={cardDesignation}  onChange={changeDesiHandler}/>}
-    <div>
-        <button onClick={clickHandler}>{type!=="list"? "Add Card":"Add List"}</button>
-    </div>
-    <div>
-        <button onClick={()=>{setOpen(false)}}>X</button>
-    </div>
-</div>
-);
+    return (
+        <div >
+        <div className="input-container">
+        <div className="margin-fields">
+                <input type="text" value={cardTitle} className='inputBase'
+                    placeholder={type !== 'list' ? "Enter your details" : "Enter List Title"}
+                    onChange={changeHandler} />
+            </div>
+            <div className="margin-fields">
+                {type !== "list" && <input type="text"
+                    className='inputBase'
+                    placeholder="Designation"
+                    value={cardDesignation} onChange={changeDesiHandler} />}
+            </div>
+            <div className="margin-fields">
+                {type !== "list" && <input type="text" className='inputBase'
+                    placeholder="Name"
+                    value={cardName} onChange={changeNameHandler} />}
+            </div>
+            <div className="margin-fields">
+                {type !== "list" && <input type="file" className='inputBase'
+                    placeholder="Uplaod Image"
+                    // value={cardImage}
+                     onChange={changeImageHandler}
+                     />}
+            </div>
+        </div>
+            <div className='btn-container'>
+                <div>
+                    <button className="add-card-btn" onClick={clickHandler}>
+                        {type !== "list" ? "Add Card" : "Add List"}
+                    </button>
+                </div>
+                <div className="margin-fields-left">
+                    <button className="btn-remove" onClick={() => { setOpen(false) }}>X</button>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default InputCard;
